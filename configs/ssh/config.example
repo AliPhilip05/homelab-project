@@ -1,0 +1,14 @@
+# Merge into ~/.ssh/config. Values are placeholders only.
+Host edge-node
+    HostName 100.xx.xx.xx
+    User <server-user>
+    ServerAliveInterval 30
+    ServerAliveCountMax 3
+    IdentityFile ~/.ssh/id_ed25519
+
+Host lab-node
+    HostName 100.yy.yy.yy
+    User <lab-user>
+    ServerAliveInterval 30
+    ServerAliveCountMax 3
+    IdentityFile ~/.ssh/id_ed25519
