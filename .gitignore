@@ -1,0 +1,23 @@
+# Secrets and local state
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+*.p12
+*.pfx
+secrets/
+private/
+*.log
+logs/
+data/
+**/grafana-data/
+**/prometheus-data/
+**/uptime-kuma-data/
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
