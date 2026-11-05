@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+name=monitor
+if tmux has-session -t "$name" 2>/dev/null; then
+    exec tmux attach-session -t "$name"
+fi
+tmux new-session -d -s "$name" -n dashboard
+tmux send-keys -t "$name:dashboard.0" btop Enter
+tmux split-window -h -t "$name:dashboard.0" 'watch -n 3 node-status'
+tmux split-window -v -t "$name:dashboard.1"
+tmux select-pane -t "$name:dashboard.0"
+exec tmux attach-session -t "$name"
