@@ -15,13 +15,13 @@ admin-workstation (macOS)
   |     [Planned] Grafana, Prometheus, Node Exporter
   +-- lab-node (Kali Linux)
         OpenSSH, Tailscale, tmux, btop
-        [Planned] i3 window manager and metrics exporter
+        i3 window manager; [Planned] metrics exporter
 ```
 
 ## Status
 **Verified in the working homelab:** private Tailscale connectivity between three devices; SSH access; Docker and Compose on ARM64; Uptime Kuma deployed and checking Linux devices (lab-node monitor green).
 
-**In progress:** reusable terminal-monitoring configuration, metrics stack, alerting, secure backups and hardening.
+**Verified:** working tmux + btop monitoring dashboards on both Linux nodes; i3 shortcut for lab workstation; remote macOS shell alias to server monitor. **In progress:** metrics stack, alerting, automatic monitor startup, backups and hardening.
 
 ## Tools and purpose
 
@@ -106,7 +106,7 @@ ssh -t lab-node start-monitor
 
 In tmux, press `Ctrl+B` then `d` to detach, `%` for a vertical split, `"` for a horizontal split, or arrow keys to switch panes. SSH disconnections do not kill tmux sessions; reboots do.
 
-## Optional metrics stack — not yet verified
+See [the working monitoring runbook](docs/TERMINAL-MONITORING.md) for the Pi and Kali-specific dashboard scripts, the i3 keyboard shortcut, and the safe macOS alias. Scripts are sanitized examples that may need adjustment per host.\n\n## Optional metrics stack — not yet verified
 
 `configs/docker/monitoring/` contains a **staged** Compose file for Grafana, Prometheus, and Node Exporter, not a claim of completed deployment. From that directory, `sudo docker compose config -q` checks the file. If you decide to deploy, review it and run `sudo docker compose up -d`. Access Grafana using `ssh -N -L 3000:127.0.0.1:3000 edge-node` and `http://localhost:3000`. Grafana can use `http://prometheus:9090` as the data-source URL within the Compose network.
 
@@ -144,6 +144,12 @@ configs/docker/monitoring/compose.yaml
 configs/docker/monitoring/prometheus.yml
 scripts/node-status
 scripts/start-monitor
+scripts/pi-monitor
+scripts/pi-status
+scripts/docker-status
+scripts/kali-monitor
+configs/i3/monitoring.conf.example
+docs/TERMINAL-MONITORING.md
 docs/ROADMAP.md
 docs/SECURITY.md
 ```
