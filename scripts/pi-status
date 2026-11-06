@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# ARM64 server health snapshot; no real device identifiers.
+printf '===== SERVER HEALTH =====\n\n'
+if command -v vcgencmd >/dev/null 2>&1; then
+  vcgencmd measure_temp
+elif [ -r /sys/class/thermal/thermal_zone0/temp ]; then
+  awk '{printf "CPU temp: %.1f C\n", $1/1000}' /sys/class/thermal/thermal_zone0/temp
+fi
+printf '\nUPTIME / LOAD\n'; uptime
+printf '\nMEMORY / SWAP\n'; free -h
+printf '\nDISK\n'; df -h /
+printf '\nSERVICES\n'
+for service in ssh docker tailscaled; do
+  printf '%-12s : ' "$service"
+  systemctl is-active "$service" 2>/dev/null || true
+done
+printf '\nTAILSCALE\n'
+tailscale status --self 2>/dev/null || echo 'Tailscale status unavailable'
