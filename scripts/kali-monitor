@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Terminal dashboard for a Kali workstation; launch outside tmux.
+SESSION=monitor
+if [ -n "${TMUX:-}" ]; then
+  echo 'Detach from current tmux session first.'
+  exit 1
+fi
+if tmux has-session -t "=$SESSION" 2>/dev/null; then
+  exec tmux attach-session -t "=$SESSION"
+fi
+tmux new-session -d -s "$SESSION" -n dashboard
+tmux send-keys -t "$SESSION:dashboard.0" 'btop' Enter
+tmux split-window -h -t "$SESSION:dashboard.0" 'watch -n 3 sensors'
+tmux split-window -v -t "$SESSION:dashboard.1" 'watch -n 3 "free -h; echo; df -h /; echo; uptime"'
+tmux select-pane -t "$SESSION:dashboard.0"
+exec tmux attach-session -t "=$SESSION"
