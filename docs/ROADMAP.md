@@ -6,9 +6,9 @@
 - [x] Docker Engine and Compose on ARM64 server
 - [x] Uptime Kuma monitoring both server and Kali laboratory node
 
-## In progress or planned
-- [ ] Deploy standardized tmux + btop terminal monitoring on both nodes
-- [ ] Configure optional i3 tiling environment on laboratory workstation
+## In progress or planned\n- [ ] Start monitoring dashboards automatically after a reboot
+- [x] Configure and verify tmux + btop terminal monitoring on both nodes
+- [x] Install i3 and verify keyboard-triggered terminal monitoring on lab workstation
 - [ ] Deploy and validate Grafana, Prometheus and Node Exporter
 - [ ] Add lab workstation hardware metrics and alerts
 - [ ] Implement and test container volume backups
