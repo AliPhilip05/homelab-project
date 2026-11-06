@@ -1,0 +1,5 @@
+# Merge into the existing i3 config; do not replace the entire file.
+# Generic launcher that uses the current user's HOME.
+# Confirm available keybinding first to avoid conflicts.
+bindsym Control+Shift+m exec kitty -e /bin/bash -lc 'exec "$HOME/.local/bin/kali-monitor"'
+# No custom Kitty title or automatic startup required.
