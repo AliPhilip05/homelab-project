@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+printf '===== DOCKER CONTAINERS =====\n\n'
+if ! command -v docker >/dev/null 2>&1; then
+  echo 'Docker is not installed'
+elif docker info >/dev/null 2>&1; then
+  docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
+elif sudo -n docker info >/dev/null 2>&1; then
+  sudo -n docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'
+else
+  echo 'Docker status requires authorization; use sudo docker ps'
+fi
