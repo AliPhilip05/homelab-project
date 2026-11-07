@@ -1,6 +1,6 @@
 # Portable Homelab — Remote Systems & Terminal Monitoring
 
-**Status:** Work in progress · **Platforms:** macOS administration workstation, Debian ARM64 server, Kali Linux lab workstation
+**Status:** Work in progress · **Platforms:** macOS administration workstation, Debian ARM64 server, Kali Linux lab workstation, Arch Linux personal workstation
 
 A sanitized, reproducible homelab configuration for private remote administration, Docker-based uptime monitoring, and persistent terminal dashboards. This repository is a reference deployment, **not an export of a live system**. Hostnames, users, IPs and credentials are placeholders.
 
@@ -22,6 +22,13 @@ admin-workstation (macOS)
 **Verified in the working homelab:** private Tailscale connectivity between three devices; SSH access; Docker and Compose on ARM64; Uptime Kuma deployed and checking Linux devices (lab-node monitor green).
 
 **Verified:** working tmux + btop monitoring dashboards on both Linux nodes; i3 shortcut for lab workstation; remote macOS shell alias to server monitor. **In progress:** metrics stack, alerting, automatic monitor startup, backups and hardening.
+
+## Personal Arch workstation
+
+Arch Linux / Hyprland workspace and keyboard settings are in
+[the Arch workstation guide](docs/ARCH-WORKSTATION.md), with reusable Lua modules
+under `configs/arch/hypr/`. Super + Shift + number moves a focused window to
+another desktop; Super + number switches desktops.
 
 ## Tools and purpose
 
